@@ -1,0 +1,15 @@
+#wrapper{
+    background-color: CadetBlue;
+    width:100vw; height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#comment {
+  margin-top: 4rem; margin-bottom: 0.5rem;
+  font-size: 18px;
+  font-family: "Sofia", Helvetica, sans-serif;
+}
+#author{
+  font-family: Impact;
+}
