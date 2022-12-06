@@ -1,1 +1,19 @@
-<p>todo-list works!</p>
+
+<table class="w-100 d-flex justify-content-center">
+<tr *ngFor="let task of arr" >
+    <td colspan="fr1">
+        <i class="bi bi-circle"></i>  <!--<i class="bi bi-check-circle"></i>-->
+    </td>
+    <td colspan="fr3">
+        <app-todo-item></app-todo-item>
+    </td>
+    <td colspan="fr1">
+        <i class="bi bi-x"></i>
+    </td>
+</tr>
+<tr *ngIf="!arr || !arr.length">
+    <td colspan="5">
+        No tasks present, good job!
+    </td>
+</tr>
+</table>
