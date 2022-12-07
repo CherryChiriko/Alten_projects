@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-todo',
@@ -9,12 +9,15 @@ export class TodoComponent implements OnInit{
   parentArr : string[] = [];
   constructor(){}
   ngOnInit(): void {
-    this.parentArr =  ["Hey", "I'm", "an array"];
+    this.parentArr =  ["Work", "Live", "Enjoy"];
   }
 
   deleteTask(value: number){
-    let newArr = [...this.parentArr];
-    newArr.splice(value,1);
-    console.log(newArr);
-;  }
+    this.parentArr.splice(value,1);
+  }
+
+  addTask(value: string){
+    this.parentArr = [value, ...this.parentArr];
+  }
+  
 }

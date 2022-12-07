@@ -1,15 +1,14 @@
 
-<div class="w-60 d-flex justify-content-center">
 <table class="table table-sm borderless table-success table-striped table-hover">
-<!-- <thead>
-<tr *ngIf="arr && arr.length">
-    <th class="col-2">Status</th>
-    <th class="col-8">Task</th>
-    <th class="col-2">Delete</th>
+<!-- <thead class="table border">
+<tr *ngIf="arr && arr.length" scope="col">
+    <th class="col-2" scope="col">Status</th>
+    <th class="col-8" scope="col">Task</th>
+    <th class="col-2" scope="col">Delete</th>
 </tr>
 </thead> -->
 <tbody>
-<tr *ngFor="let task of arr; let i=index" class="d-flex">
+<tr *ngFor="let task of arr; let i=index" class="border d-flex">
     <td class="col-2" *ngIf="arr && arr.length" (click)="toggleState()">
         <i class="bi bi-circle" *ngIf="isTodo"></i>
         <i class="bi bi-check-circle" *ngIf="!isTodo"></i>
@@ -28,4 +27,3 @@
 </tr>
 </tbody>
 </table>
-<!-- </div> -->

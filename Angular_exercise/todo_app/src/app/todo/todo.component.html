@@ -1,2 +1,2 @@
-<app-add-todo></app-add-todo>
+<app-add-todo (newEvent) = "addTask($event)"></app-add-todo>
 <app-todo-list [arr]="parentArr" (newEvent) = "deleteTask($event)"></app-todo-list>

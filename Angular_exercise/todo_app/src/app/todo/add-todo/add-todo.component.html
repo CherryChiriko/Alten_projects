@@ -1,10 +1,8 @@
-<form>
 <div class="row  w-100 d-flex justify-content-center mb-4">
     <div class="col-9">
-        <input type="text" class="form-control" placeholder="New task">
+        <input type="text" class="form-control" placeholder="New task" (change)="addTaskContent($event)">
     </div>
     <div class="col-1">
-        <button class="btn btn-outline-success" (click)="addTask()">Add</button>
+        <button class="btn btn-outline-success" (click)="addTaskChild()">Add</button>
     </div>
 </div>
-</form>
