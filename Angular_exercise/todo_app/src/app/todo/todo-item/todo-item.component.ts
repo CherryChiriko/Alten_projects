@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-todo-item',
@@ -6,11 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit{
-  task: string[] = [];
-    
+  isTodo: boolean = true;
+  @Output() newEvent = new EventEmitter<number>();
   constructor() {}
     
-  ngOnInit() {
-      this.task = ['Veni','Vidi','Vici'];
-  }
+  ngOnInit() {}
+
+  // updateState(){
+  //   this.newEvent.emit(this.isTodo);
+  // }
 }

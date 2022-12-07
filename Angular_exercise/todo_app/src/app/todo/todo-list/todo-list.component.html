@@ -1,19 +1,31 @@
 
-<table class="w-100 d-flex justify-content-center">
-<tr *ngFor="let task of arr" >
-    <td colspan="fr1">
-        <i class="bi bi-circle"></i>  <!--<i class="bi bi-check-circle"></i>-->
+<div class="w-60 d-flex justify-content-center">
+<table class="table table-sm borderless table-success table-striped table-hover">
+<!-- <thead>
+<tr *ngIf="arr && arr.length">
+    <th class="col-2">Status</th>
+    <th class="col-8">Task</th>
+    <th class="col-2">Delete</th>
+</tr>
+</thead> -->
+<tbody>
+<tr *ngFor="let task of arr; let i=index" class="d-flex">
+    <td class="col-2" *ngIf="arr && arr.length" (click)="toggleState()">
+        <i class="bi bi-circle" *ngIf="isTodo"></i>
+        <i class="bi bi-check-circle" *ngIf="!isTodo"></i>
     </td>
-    <td colspan="fr3">
-        <app-todo-item></app-todo-item>
+    <td class="col-8" *ngIf="arr && arr.length">
+        {{task}}
     </td>
-    <td colspan="fr1">
+    <td class="col-2" (click)="deleteTaskChild(i)" *ngIf="arr && arr.length">
         <i class="bi bi-x"></i>
     </td>
 </tr>
 <tr *ngIf="!arr || !arr.length">
-    <td colspan="5">
+    <td class="col">
         No tasks present, good job!
     </td>
 </tr>
+</tbody>
 </table>
+<!-- </div> -->
