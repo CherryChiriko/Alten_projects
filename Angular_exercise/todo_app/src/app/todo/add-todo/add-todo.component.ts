@@ -3,7 +3,7 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-add-todo',
   templateUrl: './add-todo.component.html',
-  styleUrls: ['./add-todo.component.css']
+  styleUrls: []
 })
 export class AddTodoComponent implements OnInit{
   ngOnInit(): void {}

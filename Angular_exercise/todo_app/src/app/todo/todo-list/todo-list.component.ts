@@ -3,8 +3,9 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  styleUrls: []
 })
+
 export class TodoListComponent implements OnInit{
   @Input() arr: string[] = [];
   @Output() newEvent = new EventEmitter<number>();

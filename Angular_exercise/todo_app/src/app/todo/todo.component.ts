@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  styleUrls: []
 })
 export class TodoComponent implements OnInit{
   parentArr : string[] = [];
   constructor(){}
   ngOnInit(): void {
-    this.parentArr =  ["Work", "Live", "Enjoy"];
+    
   }
 
   deleteTask(value: number){
