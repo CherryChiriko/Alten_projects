@@ -8,17 +8,17 @@ import { ITodo } from 'src/app/interfaces/todo.interface';
 })
 
 export class TodoListComponent implements OnInit{
-  @Input() taskArr: ITodo[] = [];
+  @Input() arr: ITodo[] = [];
   @Output() newEvent = new EventEmitter<number>();
 
   isTodo: boolean = true;
-  arr: string[] = [];
+  // arr: string[] = [];
 
   constructor(){}
   ngOnInit(): void {
-    for (let i=0; i< this.taskArr.length; i++){
-      this.arr.push(this.taskArr[i].label);
-    }
+    // for (let i=0; i< this.taskArr.length; i++){
+    //   this.arr.push(this.taskArr[i].label);
+    // }
   }
 
   deleteTaskChild(value:number){

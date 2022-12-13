@@ -14,7 +14,7 @@
         <i class="bi bi-check-circle" *ngIf="!isTodo"></i>
     </td>
     <td class="col-8" *ngIf="arr && arr.length">
-        {{task}}
+        {{task.label}}
     </td>
     <td class="col-2" (click)="deleteTaskChild(i)" *ngIf="arr && arr.length">
         <i class="bi bi-x"></i>
