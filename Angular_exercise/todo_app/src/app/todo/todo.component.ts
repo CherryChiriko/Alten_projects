@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ITodo } from '../interfaces/todo.interface';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -6,18 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: []
 })
 export class TodoComponent implements OnInit{
-  parentArr : string[] = [];
-  constructor(){}
+  parentArr : ITodo[] = [];
+  constructor(private task: TodoService){}
   ngOnInit(): void {
-    
+    this.parentArr = this.task.getAll();
   }
 
   deleteTask(value: number){
-    this.parentArr.splice(value,1);
+    this.task.deleteOne(value);
+    this.parentArr = this.task.getAll();
+    console.log(this.parentArr)
   }
 
   addTask(value: string){
-    this.parentArr = [value, ...this.parentArr];
+    this.task.createOne(value);
+    this.parentArr = this.task.getAll();
+    console.log(this.parentArr)
   }
   
 }
