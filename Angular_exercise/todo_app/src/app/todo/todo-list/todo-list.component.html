@@ -16,7 +16,7 @@
     <td class="col-8" *ngIf="arr && arr.length">
         {{task.label}}
     </td>
-    <td class="col-2" (click)="deleteTaskChild(i)" *ngIf="arr && arr.length">
+    <td class="col-2" (click)="deleteTaskChild(task.id)" *ngIf="arr && arr.length">
         <i class="bi bi-x"></i>
     </td>
 </tr>
