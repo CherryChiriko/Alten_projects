@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { concat, Subscription, switchMap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { ITodo } from '../interfaces/todo.interface';
 import { TodoService } from '../services/todo.service';
 
@@ -20,18 +20,14 @@ export class TodoComponent implements OnInit{
   }
   deleteTask(value: number){
     this.task.deleteOne(value).pipe(
-      switchMap( () => {
-        return this.task.getAll();
-      })
-    ).subscribe((todos: ITodo[])=> this.parentArr = todos);
+      switchMap( () => this.task.getAll()))
+    .subscribe((todos: ITodo[])=> this.parentArr = todos);
   }
 
   addTask(value: string){
     this.task.createOne(value).pipe(
-      switchMap( () => {
-        return this.task.getAll();
-      })
-    ).subscribe((todos: ITodo[])=> this.parentArr = todos);
+      switchMap( () => this.task.getAll() ))
+      .subscribe((todos: ITodo[])=> this.parentArr = todos);
   }
   
   ngOnDestroy(){

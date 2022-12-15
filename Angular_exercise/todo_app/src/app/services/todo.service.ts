@@ -27,9 +27,7 @@ import { ITodo } from '../interfaces/todo.interface';
       )
     }
 
-    // public createOne(label : string) : Observable<ITodo[]>{
-    public createOne(label : string) {
-      // let newTask: ITodo = {id: 0, label: label};
+    public createOne(label : string) : Observable<ITodo[]>{
       return this.http.post<ITodo[]>(this.url, {label});
     }
     
