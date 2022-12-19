@@ -8,12 +8,12 @@
 </tr>
 </thead> -->
 <tbody>
-<tr *ngFor="let task of arr; let i=index" class="border d-flex">
+<tr *ngFor="let task of arr; let i=index" class="border">
     <td class="col-2" *ngIf="arr && arr.length" (click)="toggleState()">
         <i class="bi bi-circle" *ngIf="isTodo"></i>
         <i class="bi bi-check-circle" *ngIf="!isTodo"></i>
     </td>
-    <td class="col-8" *ngIf="arr && arr.length">
+    <td class="col-8" *ngIf="arr && arr.length" [routerLink]="['/todo', task.id ]">
         {{task.label}}
     </td>
     <td class="col-2" (click)="deleteTaskChild(task.id)" *ngIf="arr && arr.length">

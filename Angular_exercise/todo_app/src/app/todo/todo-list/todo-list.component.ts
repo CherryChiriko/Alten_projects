@@ -12,14 +12,9 @@ export class TodoListComponent implements OnInit{
   @Output() newEvent = new EventEmitter<number>();
 
   isTodo: boolean = true;
-  // arr: string[] = [];
 
   constructor(){}
-  ngOnInit(): void {
-    // for (let i=0; i< this.taskArr.length; i++){
-    //   this.arr.push(this.taskArr[i].label);
-    // }
-  }
+  ngOnInit(): void {}
 
   deleteTaskChild(value:number){
     this.newEvent.emit(value);

@@ -8,6 +8,8 @@ import { TodoComponent } from './todo/todo.component';
 import { AddTodoComponent } from './todo/add-todo/add-todo.component';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoRoutingModule } from './todo/todo-routing.module';
+import { TodoInfoComponent } from './todo/todo-info/todo-info.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     TodoComponent,
     AddTodoComponent,
-    TodoListComponent
+    TodoListComponent,
+    TodoInfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule, 
+    TodoRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
