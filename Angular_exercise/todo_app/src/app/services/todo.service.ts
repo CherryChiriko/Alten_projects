@@ -1,7 +1,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { map, Observable, BehaviorSubject, tap } from 'rxjs';
 import { ITodo } from '../interfaces/todo.interface';
 
 @Injectable({
@@ -9,13 +9,43 @@ import { ITodo } from '../interfaces/todo.interface';
   })
   export class TodoService {
     
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { 
+      this.http.get<ITodo[]>(this.url).subscribe(
+      todos => this.refresh(todos)
+      )
+    }
 
-    private url: string = "http://localhost:3000/todo"
+    private url: string = "http://localhost:3000/todo";
     
-    public getAll(): Observable<ITodo[]> { 
-      return this.http.get<ITodo[]>(this.url);
-    }  
+    private subject$ = new BehaviorSubject<ITodo[]>([]);   
+    private refresh(todos: ITodo[]){ return this.subject$.next(todos);  }
+
+    public getAll(): Observable<ITodo[]> {
+      return this.subject$;
+    }
+  
+    public createOne(label : string) : Observable<ITodo[]>{
+      return this.http.post<ITodo[]>(this.url, {label}).pipe(tap(
+        res => {
+          let r = this.http.get<ITodo[]>(this.url);
+          console.log(r)
+          this.subject$.next(res)}
+      )
+    )}
+    
+    public deleteOne(id: number): Observable<ITodo[]>{
+      return this.http.delete<ITodo[]>(`${this.url}/${id}`).pipe(tap(
+        this.http.get<ITodo[]>(this.url).subscribe(todos => this.refresh(todos))
+      ));
+    }
+
+    // public deleteOne(id: number): Observable<ITodo[]>{
+    //   return this.http.delete<ITodo[]>(`${this.url}/${id}`).pipe(tap(
+    //     this.http.get<ITodo[]>(this.url).subscribe(
+    //       todos => this.refresh(todos)
+    //       )
+    //   ));
+    // }
 
     public getOne(id: number): Observable<ITodo[] | null>{ 
       return this.http.get<ITodo[]>(`${this.url}/${id}`)
@@ -26,19 +56,36 @@ import { ITodo } from '../interfaces/todo.interface';
         })
       )
     }
-
-    public createOne(label : string) : Observable<ITodo[]>{
-      return this.http.post<ITodo[]>(this.url, {label});
-    }
-    
-    public deleteOne(id: number): Observable<ITodo[]>{
-      return this.http.delete<ITodo[]>(`${this.url}/${id}`);
-    }
-
-    // private handleError(error: any) : void {
-    //   console.error('server error:', error);
-    // }
   }
+
+  // public getAll(): Observable<ITodo[]> { 
+  //   return this.http.get<ITodo[]>(this.url);
+  // }  
+
+  // public getOne(id: number): Observable<ITodo[] | null>{ 
+  //   return this.http.get<ITodo[]>(`${this.url}/${id}`)
+  //   .pipe(
+  //     map(tasks => {
+  //       let task: ITodo[] = tasks.filter((todo: ITodo) => todo.id === id);
+  //       return (task && task.length) ? task : null;
+  //     })
+  //   )
+  // }
+
+  // public createOne(label : string) : Observable<ITodo[]>{
+  //   return this.http.post<ITodo[]>(this.url, {label});
+  // }
+  
+  // public deleteOne(id: number): Observable<ITodo[]>{
+  //   return this.http.delete<ITodo[]>(`${this.url}/${id}`);
+  // }
+
+
+
+
+
+
+
 
 
     // private taskArr: ITodo[] = [{id:0, label:"Wake Up"}, {id:1, label:"Work"}, {id:2, label:"Sleep"}, {id:3, label:"Repeat"}];

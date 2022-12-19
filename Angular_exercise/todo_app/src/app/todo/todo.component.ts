@@ -13,29 +13,59 @@ export class TodoComponent implements OnInit{
 
   subscription !: Subscription;
   
+
   constructor(private task: TodoService){}
+
   ngOnInit(): void {
-    this.task.getAll()
-    .subscribe((todos: ITodo[])=> this.parentArr = todos);
-  }
-  deleteTask(value: number){
-    this.task.deleteOne(value).pipe(
-      switchMap( () => this.task.getAll()))
+    this.subscription = this.task.getAll()
     .subscribe((todos: ITodo[])=> this.parentArr = todos);
   }
 
-  addTask(value: string){
-    this.task.createOne(value).pipe(
-      switchMap( () => this.task.getAll() ))
+  deleteTask(value: number){
+    this.task.deleteOne(value)
       .subscribe((todos: ITodo[])=> this.parentArr = todos);
   }
-  
+  addTask(value: string){
+    this.task.createOne(value)
+      .subscribe((todos: ITodo[])=> this.parentArr = todos);
+  }
+
   ngOnDestroy(){
-    if(this.subscription){
-      this.subscription.unsubscribe(); 
-    }
+  if(this.subscription){
+    this.subscription.unsubscribe(); 
   }
 }
+}
+
+  // ngOnInit(): void {
+  //   this.task.getAll()
+  //   .subscribe((todos: ITodo[])=> this.parentArr = todos);
+  // }
+  // deleteTask(value: number){
+  //   this.task.deleteOne(value).pipe(
+  //     switchMap( () => this.task.getAll()))
+  //   .subscribe((todos: ITodo[])=> this.parentArr = todos);
+  // }
+
+  // addTask(value: string){
+  //   this.task.createOne(value).pipe(
+  //     switchMap( () => this.task.getAll() ))
+  //     .subscribe((todos: ITodo[])=> this.parentArr = todos);
+  // }
+  
+  // ngOnDestroy(){
+  //   if(this.subscription){
+  //     this.subscription.unsubscribe(); 
+  //   }
+  // }
+
+
+
+
+
+
+
+
 
 
 
