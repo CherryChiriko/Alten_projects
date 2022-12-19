@@ -1,14 +1,6 @@
 
 *.pdf
 
-Angular_exercise/todo_app/.editorconfig
-
 Angular_exercise/tutorialapp/
-
-Angular_exercise/todo_app/.vscode/extensions.json
-
-Angular_exercise/todo_app/.vscode/
-
-*.json
 
 *.md
