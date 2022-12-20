@@ -10,6 +10,8 @@ import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoRoutingModule } from './todo/todo-routing.module';
 import { TodoInfoComponent } from './todo/todo-info/todo-info.component';
+import { FormComponent } from './form/form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { TodoInfoComponent } from './todo/todo-info/todo-info.component';
     TodoComponent,
     AddTodoComponent,
     TodoListComponent,
-    TodoInfoComponent
+    TodoInfoComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    TodoRoutingModule
+    TodoRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
