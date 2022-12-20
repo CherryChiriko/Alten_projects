@@ -2,7 +2,8 @@
 <table class="my-3 table table-sm borderless table-success table-striped table-hover">
     <tr>
         <th class="col-2">Id:</th>
-        <td class="col-5">{{info.id}}</td>
+        <td class="col-5">{{id$ | async}}</td>
+        <!-- <td class="col-5">{{info.id}}</td> -->
     </tr>
     <tr>
         <th class="col-2">Content:</th>

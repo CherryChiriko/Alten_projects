@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // import { ITodo } from 'src/app/interfaces/todo.interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -18,9 +18,14 @@ export class TodoInfoComponent implements OnInit{
     private service : TodoService,
     private router: ActivatedRoute){}
   ngOnInit(): void {
-    this.id = this.router.snapshot.params['id'];
-    
-    
+
+    // *** This works, params *** //
+    this.id$ = this.router.params.pipe(map(x => x['id']))
+    this.id$.subscribe(x => this.id = x)
+    this.service.getOne(this.id).subscribe(val => this.info = (val));
+
+    // *** This works, snapshot *** //
+    // this.id = this.router.snapshot.params['id'];
     // this.service.getOne(this.id).subscribe(val => this.info = (val));
 
   }
