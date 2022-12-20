@@ -3,84 +3,103 @@
         margin: 0 auto;
         width:80%;
     }
-    .alert-danger {
-        margin-top: 0;
-        padding: 0.3rem 1rem ;
-    }
+    label{ font-size: 13px;  }
 </style>
+
+<div *ngIf="successMessage !== ''" class="alert alert-success text-center my-4">
+    {{successMessage}}
+</div>
 <div class="center-div">
     <form #userForm = 'ngForm' (ngSubmit)="register(userForm)">
-        
-        <div class="form-group">
-            <input type="text" name="name" placeholder="Name"
-            [(ngModel)] = "user.name" required 
-            minlength="3" maxlength="30"
-            #name = "ngModel"/>
-        </div>
-        <small *ngIf="name.errors?.['minlength']" class="alert alert-danger">
-            Name should be minimum 3 characters.
-        </small>
-        <small *ngIf="name.dirty && name.errors?.['required']" class="alert alert-danger">
-            Please provide your name.
-        </small>
-        <div class="form-group">
-            <input type="text" name="surname" placeholder="Surname"
-            [(ngModel)] = "user.surname" required 
-            minlength="3" maxlength="30"
-            #surname = "ngModel"/>
-        </div>
-        <div *ngIf="surname.errors?.['minlength']" class="alert alert-danger">
-            Surname should be minimum 3 characters.
-        </div>
-        <div *ngIf="surname.dirty && surname.errors?.['required']" class="alert alert-danger">
-            Please provide your surname.
-        </div>
-        <div class="form-group">
-            <input type="email" name="email" placeholder="Email"
-            [(ngModel)] = "user.email" required 
-            maxlength="30"
-            #email = "ngModel"/>
-        </div>
-        <div *ngIf="email.errors?.['maxlength']" class="alert alert-danger">
-            Surname should be maximum 30 characters.
-        </div>
-        <div *ngIf="email.dirty && email.errors?.['required']" class="alert alert-danger">
-            Please provide a valid email address.
-        </div>
-        <div class="form-group">
-            <input type="password" name="password" placeholder="Password"
-            [(ngModel)] = "user.password" required 
-            minlength="3" maxlength="30"
-            #password = "ngModel"/>
-        </div>
-        <div *ngIf="surname.errors?.['minlength']" class="alert alert-danger">
-            Password should be minimum 3 characters.
-        </div>
-        <div *ngIf="password.errors?.['maxlength']" class="alert alert-danger">
-            Password should be maximum 30 characters.
-        </div>
-        <div *ngIf="password.dirty && password.errors?.['required']" class="alert alert-danger">
-            Please provide a valid password.
-        </div>
+        <div class="form-row form-group">
+            <div class="col">
+              <input type="text" name="name" id="name" 
+              class="form-control" placeholder="First name"
+              [(ngModel)] = "user.name" required 
+                minlength="3" maxlength="30"
+                #name = "ngModel">
+              <label for="name" 
+              *ngIf="name.errors?.['minlength']" 
+              class="alert alert-danger sm">
+              Name should be minimum 3 characters.</label>
+              <label for="name" 
+              *ngIf="name.dirty && name.errors?.['required']" 
+              class="alert alert-danger sm">
+              Please provide your name.</label>
+            </div>
 
-        <!-- <div class="form-group">
-            <input type="password" name="rePassword" placeholder="Repeat your password"
+            <div class="col">
+              <input type="text" name="surname" id="surname"
+              class="form-control" placeholder="Last name"
+              [(ngModel)] = "user.surname" required 
+                minlength="3" maxlength="30"
+                #surname = "ngModel">
+            <label for="surname" 
+            *ngIf="surname.errors?.['minlength']" 
+            class="alert alert-danger sm">
+            Surname should be minimum 3 characters.</label>
+            <label for="surname" 
+            *ngIf="surname.dirty && surname.errors?.['required']" 
+            class="alert alert-danger sm">
+            Please provide your surname.</label>
+            </div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col">
+            <input type="email" name="email" id="email" 
+            class="form-control" placeholder="Email"
+            [(ngModel)] = "user.email" required 
+              maxlength="30"
+              #email = "ngModel"
+              pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+
+            <label for="email" 
+            *ngIf="email.dirty && email.invalid" 
+            class="alert alert-danger sm">
+            Please provide a valid email address.</label>
+            <label for="email" 
+            *ngIf="email.dirty && email.errors?.['required']" 
+            class="alert alert-danger sm">
+            Please provide your email.</label>
+            </div>
+          </div>
+       
+          <div class="form-row form-group">
+            <div class="col">
+              <input type="password" name="password" id="password" 
+              class="form-control" placeholder="Password"
+              [(ngModel)] = "user.password" required 
+                minlength="3" maxlength="60"
+                #password = "ngModel"/>
+              <label for="password" 
+              *ngIf="password.errors?.['minlength']" 
+              class="alert alert-danger sm">
+              Password should be minimum 3 characters.</label>
+              <label for="name" 
+              *ngIf="password.dirty && password.errors?.['required']" 
+              class="alert alert-danger sm">
+              Please provide your password.</label>
+            </div>
+
+            <div class="col">
+            <input type="password" name="rePassword" id="rePassword" 
+            class="form-control" placeholder="Password"
             [(ngModel)] = "rePassword" required 
-            #rePassword = "ngModel"/>
+                minlength="3" maxlength="60"
+                #password = "ngModel"/>
+            <label for="rePassword" *ngIf="password.dirty && (user.password !== rePassword)"
+            class="alert alert-danger sm">
+            Password does not match.</label>
+            </div>
+          </div>
+          <div class="row">
+        <div class="col text-center" >
+            <button [disabled]="userForm.invalid" 
+            class="btn btn-primary" type="submit">Submit</button>
         </div>
-        <div *ngIf="rePassword.dirty && rePassword.errors?.['required']" class="alert alert-danger">
-            Please repeat your password.
-        </div>
-        <div *ngIf="password.dirty && rePassword.dirty && (rePassword !== password)" class="alert alert-danger">
-            Password does not match.
-        </div> -->
-        <div>
-            <button [disabled]="userForm.invalid" class="btn btn-primary" type="submit">Submit</button>
-        </div>
+    </div>
     </form>
     
-    <div *ngIf="successMessage !== ''" class="alert alert-success text-center my-4">
-        {{successMessage}}
-    </div>
+    
 </div>
 
