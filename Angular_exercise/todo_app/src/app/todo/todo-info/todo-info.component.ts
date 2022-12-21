@@ -18,16 +18,15 @@ export class TodoInfoComponent implements OnInit{
     private service : TodoService,
     private router: ActivatedRoute){}
   ngOnInit(): void {
-
+    
     // *** This works, params *** //
-    this.id$ = this.router.params.pipe(map(x => x['id']))
-    this.id$.subscribe(x => this.id = x)
-    this.service.getOne(this.id).subscribe(val => this.info = (val));
+    // this.id$ = this.router.params.pipe(map(x => x['id']))
+    // this.id$.subscribe(x => this.id = x)
+    // this.service.getOne(this.id).subscribe(val => this.info = (val));
 
     // *** This works, snapshot *** //
     // this.id = this.router.snapshot.params['id'];
     // this.service.getOne(this.id).subscribe(val => this.info = (val));
 
   }
-
 }

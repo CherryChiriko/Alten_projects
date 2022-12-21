@@ -1,15 +1,86 @@
-<style>
-    .center-div{
-        margin: 0 auto;
-        width:80%;
-    }
-    label{ font-size: 13px;  }
-</style>
-
 <div *ngIf="successMessage !== ''" class="alert alert-success text-center my-4">
     {{successMessage}}
 </div>
+
 <div class="center-div">
+<form [formGroup]="reactiveForm" (ngSubmit)="register()">
+  <div class="form-row form-group">
+    <div class="col">
+      <input type="text" name="name" id="name" 
+        class="form-control" placeholder="First name"
+        formControlName = "name">
+    </div>
+    <label for="name" 
+      *ngIf="reactiveForm.get('name')?.invalid && reactiveForm.get('name')?.touched">
+      <small class="text-danger" *ngIf="reactiveForm.get('name')?.errors?.['required']">Required field</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('name')?.errors?.['minlength']">Minimum 3 characters</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('name')?.errors?.['maxlength']">Maximum 30 characters</small>
+    </label>
+
+    <div class="col">
+      <input type="text" name="surname" id="surname" 
+        class="form-control" placeholder="Last name"
+        formControlName = "surname">
+    </div>
+    <label for="surname" 
+      *ngIf="reactiveForm.get('surname')?.invalid && reactiveForm.get('surname')?.touched">
+      <small class="text-danger" *ngIf="reactiveForm.get('surname')?.errors?.['required']">Required field</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('surname')?.errors?.['minlength']">Minimum 3 characters</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('surname')?.errors?.['maxlength']">Maximum 30 characters</small>
+    </label>
+  </div>
+
+
+  <div class="form-row form-group">
+    <div class="col">
+      <input type="email" name="email" id="email" 
+        class="form-control" placeholder="Email"
+        formControlName = "email">
+    </div>
+    <label for="email" 
+      *ngIf="reactiveForm.get('email')?.invalid && reactiveForm.get('email')?.touched">
+      <small class="text-danger" *ngIf="reactiveForm.get('email')?.errors?.['required']">Required field</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('email')?.errors?.['maxlength']">Maximum 30 characters</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('email')?.errors?.['pattern']">Enter a valid email address</small> 
+    </label>
+  </div>
+    
+  <div class="form-row form-group">
+    <div class="col">
+      <input type="password" name="password" id="password" 
+        class="form-control" placeholder="Password"
+        formControlName = "password">
+    </div>
+    <label for="password" 
+      *ngIf="reactiveForm.get('password')?.invalid && reactiveForm.get('password')?.touched">
+      <small class="text-danger" *ngIf="reactiveForm.get('password')?.errors?.['required']">Required field</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('password')?.errors?.['minlength']">Minimum 3 characters</small>
+      <small class="text-danger" *ngIf="reactiveForm.get('password')?.errors?.['maxlength']">Maximum 30 characters</small>
+    </label>
+
+    <div class="col">
+      <input type="password" name="rePassword" id="rePassword" 
+        class="form-control" placeholder="Repeat Password"
+        formControlName = "rePassword">
+    </div>
+    <label for="rePassword" 
+      *ngIf="reactiveForm.get('rePassword')?.value !== reactiveForm.get('password')?.value && reactiveForm.get('rePassword')?.touched">
+      <small class="text-danger" *ngIf="reactiveForm.get('rePassword')?.errors?.['required']">Required field</small>
+      <small class="text-danger" >Password does not match</small>
+    </label>
+  </div>
+
+    <div class="col text-center" >
+        <button class="btn btn-primary" type="submit"
+        [disabled]="reactiveForm.invalid">
+        Submit</button>
+    </div>
+  
+</form>
+</div>
+
+        <!-- **** TEMPLATE DRIVEN FORM **** -->
+<!-- <div class="center-div">
     <form #userForm = 'ngForm' (ngSubmit)="register(userForm)">
         <div class="form-row form-group">
             <div class="col">
@@ -101,5 +172,5 @@
     </form>
     
     
-</div>
+</div> -->
 

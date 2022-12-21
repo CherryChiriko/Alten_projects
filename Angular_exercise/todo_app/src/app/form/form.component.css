@@ -1,0 +1,9 @@
+.center-div{
+    margin: 0 auto;
+    width:80%;
+}
+label{ font-size: 13px;  }
+
+input.ng-invalid.ng-touched {
+  border: red 1px solid;
+}
