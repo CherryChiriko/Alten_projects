@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm , Validators} from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, NgForm , ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { IForm } from '../interfaces/form.interface';
 
@@ -30,21 +30,20 @@ export class FormComponent implements OnInit{
       ]),
       password: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(60)]),
       rePassword: new FormControl(null, [Validators.required])
-    })    
+    }, this.pswValidation
+  )    
   }
   register(){
     this.successMessage = "User data registered successfully"
     this.route.navigate(['/home'])
- }
+  }
 
-//  pswValidation(control : FormControl){
-//   const password: string = control?.get("password").value; 
-//   const confirmPassword: string = control?.get("rePassword").value; 
-    
-  // if (control != null && control.value != this.reactiveForm.get(password)){
-  //   return {pswInvalid : true};
-  // }
-  // return null;
-//  }
+
+pswValidation(control: AbstractControl) {
+  const pswCtrl = control.get('password');
+  const rePswCtrl = control.get('rePassword');
+  return pswCtrl && rePswCtrl && pswCtrl.value !== rePswCtrl.value ?
+  {mismatch: true} : null
+}
 
 }
