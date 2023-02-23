@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -29,27 +29,18 @@ export class FormService {
 
   let result = {resultMessage: '', success: false};
 
-  await this.http.get(url).pipe(
-    tap(users => result = this.findUser(users, userName, password))
-  ).toPromise();
+  // await this.http.get(url).pipe(
+  //   tap(users => result = this.findUser(users, userName, password))
+  // ).toPromise();
   
+  // return result;
+
+  const users$ = this.http.get(url);
+
+  await lastValueFrom(users$.pipe(
+    tap(users => result = this.findUser(users, userName, password))
+  ));
   return result;
-  // if (result !== '') {
-  //   return result;
-  // } else {
-  //   throw new Error('Incorrect username or password');
-  // }
+
 }
 }
-
-
- // checkUser(data: string[]){
-  //   const url = 'http://localhost:3000/login/users';
-  //   const [userName, password] = data;
-
-  //   this.http.get(url).subscribe(users => 
-  //     console.log(this.findUser(users, userName, password)));
-    
-  //   // return this.findUser(users, userName, password);
-  //   return ''
-  // }
