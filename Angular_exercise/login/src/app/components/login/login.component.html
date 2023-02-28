@@ -18,7 +18,9 @@
           Login</button>
       </div>
     </form>
-    <div class="alert" *ngIf="result.resultMessage"
+    <p>{{result.resultMessage}}</p>
+    <p>{{result.success}}</p>
+    <div class="alert" *ngIf="result?.resultMessage"
     [ngClass]="!result.success? 'alert-danger' : 'alert-success'">
     {{result.resultMessage}}</div>
   </div>

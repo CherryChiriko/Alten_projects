@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { IUser } from 'src/app/interfaces/interfaces';
+import { IResult, IUser } from 'src/app/interfaces/interfaces';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { FormService } from 'src/app/services/form.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  result = {
+  result : IResult = {
     resultMessage : '',
     success : false
   }
@@ -25,16 +25,11 @@ export class LoginComponent {
     })    
   }
 
-  login() : void{
+  public login() : void { 
     const val = this.reactiveForm.value;
-    // const data = [val.name, val.password];
-    // this.form.checkUser(data).then(result => {
-    //   result? this.result = result: null;
-    // });
     const body: IUser = { userName: val.name, password: val.password };
     this.form.checkUser(body).then(result => {
-      result? this.result = result : null
+      {console.log(result); result? this.result = result : null}
     })
-    // return this.http.post(url, body);
   }
 }

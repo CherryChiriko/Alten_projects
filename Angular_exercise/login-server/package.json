@@ -1,5 +1,5 @@
 {
-  "name": "todo",
+  "name": "login",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
@@ -9,7 +9,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "author": "Daniele Salaris",
+  "author": "Sofia",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.1",

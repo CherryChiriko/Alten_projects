@@ -1,8 +1,8 @@
-
+import { IUser } from '../interfaces/interfaces'
 
 export class LoginService {
 
-  users = [];
+  private users : IUser[] = [];
 
   constructor() {
     this.users = [
@@ -17,13 +17,14 @@ export class LoginService {
     ]
   }
 
-  getAll(){    return this.users;  }
+  public getAll() : IUser[]{    return this.users;  }
 
-  findUser(body) {
-    const user = this.users.find(u => 
+  public findUser(users: IUser[], body: IUser) : Object{
+    const user = users.find(u => 
       u.userName === body.userName && u.password === body.password);
     return user ? 
       { success: true, message: 'Login successful' } :
       { success: false, message: 'Incorrect username or password' };
     }
+
 }
