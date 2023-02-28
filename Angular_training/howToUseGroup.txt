@@ -1,0 +1,19 @@
+const arr = [
+  {
+    name: 'Tizio',
+    age: 25,
+    city: 'Roma'  },
+  {
+    name: 'Caio',
+    age: 7,
+    city: 'Roma'  },
+  {
+    name: 'John Doe',
+    age: 28,
+    city: 'Londra'  }
+]
+const cityGroup = groupArray<Person, string>(arr, (p => p.city));
+const ageGroup = groupArray<Person, string>(arr, (p => p.age > 18 ? 'adults' :'children'));
+console.log('cityGroup', cityGroup);
+// {//     'Roma' => [{name: 'Tizio', age: 25, city: 'Roma'}, {name: 'Caio', age: 7, city: 'Roma'}],//     'Londra' => [{name: 'John Doe', age: 28, city: Londra}]// }console.log('ageGroup', ageGroup);
+// {//     'adults' => [{name: 'Tizio', age: 25, city: 'Roma'}, {name: 'John Doe', age: 28, city: Londra}],//     'Londra' => [{name: 'Caio', age: 7, city: 'Roma'}]// }

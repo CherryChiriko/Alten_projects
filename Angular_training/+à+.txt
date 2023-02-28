@@ -1,0 +1,20 @@
+[12:48] Daniele SALARIS
+Comunque occhio che ci sono degli errorini che non sono legati a questo problema qua ma te ne potrebbero causare altri.
+ 
+Uno è che stai facendo correttamente la unsubscribe dentro la onDestroy però non inizializzi mai le iscrizioni. Ricordati di assegnare le iscrizioni quando fai la subscribe
+ 
+poi quando fai
+let friendsId = this.users.getUserInfo(userId)?.friends;
+ 
+stai dicendo che friendsId potrebbe anche essere undefined (o null)
+ 
+mentre poi lo utilizzi sotto facendo friendsIds.indexOf
+
+[12:49] Daniele SALARIS
+potresti o fare friendsIds?.indexOf oppure ancora meglio al momento dell'assegnazione puoi fare questo:
+let friendsId = this.users.getUserInfo(userId)?.friends ?? [];
+ surprised 1
+
+[12:49] Daniele SALARIS
+facendo ?? []; dici che in caso di valore undefined ci metti un array vuoto
+
