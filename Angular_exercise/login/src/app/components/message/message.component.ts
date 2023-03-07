@@ -11,13 +11,10 @@ export class MessageComponent implements OnInit{
   @Input() result = new Result("", 500);
   @Input() user?: User;
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {}
   constructor(){}
 
-  ngOnChanges(changes: SimpleChanges){
-    this.display()
-    console.log(changes)
-  }
+  ngOnChanges(){    this.display()  }
 
   private stringToDate(dateString: string): Date{
     return new Date(Date.parse(dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1')));
@@ -30,16 +27,18 @@ export class MessageComponent implements OnInit{
   private daysForBirthday(birthday: Date) : number {
     const now = new Date(); const currentYear = now.getFullYear();
     const millisecondsPerDay = 24 * 60 * 60 * 1000;
-    const birthdayThisYear = birthday.setFullYear(currentYear)
+    const birthdayThisYear = birthday.setFullYear(currentYear);
+    const nextBirthday = birthdayThisYear > now.getTime() ?
+     now.getTime() : now.setFullYear(currentYear + 1) ;
 
-    const nextBirthday = now.getTime() > birthdayThisYear ? now : now.setFullYear(currentYear + 1) ;
-    return Math.ceil((birthdayThisYear - now.getTime()) / millisecondsPerDay);
+    return Math.ceil((birthdayThisYear - nextBirthday) / millisecondsPerDay);
   }
 
   display(){
     const birthday = this.user?.birthday? this.stringToDate(this.user.birthday) : new Date();
-    const message = `Hello ${this.user?.userName}!
-    You will be ${this.calculateAge(birthday)} in ${this.daysForBirthday(birthday)} days!`
-    console.log(message)
+    console.log(this.user)
+    const message = this.user?.userName? `Hello ${this.user?.userName}!\n
+    You will be ${this.calculateAge(birthday)} in ${this.daysForBirthday(birthday)} days!`: '';
+    return message;
   }
 }
