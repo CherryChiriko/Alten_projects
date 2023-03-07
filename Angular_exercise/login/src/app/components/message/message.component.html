@@ -1,0 +1,8 @@
+<div class="container w-50">
+  <div class="alert" *ngIf="result.message"
+  [ngClass]="result.status > 399? 'alert-danger' : 'alert-success'">
+  {{result.message}}</div>
+  <!-- <p>{{result}}</p> -->
+  <button (click)="display()" class="btn btn-primary">Display</button>
+
+</div>

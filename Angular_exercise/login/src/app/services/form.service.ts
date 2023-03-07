@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { IUser } from '../interfaces/interfaces';
 
 @Injectable({
@@ -11,14 +10,8 @@ export class FormService {
 
   constructor(private http: HttpClient) { }
 
-  public async checkUser(body: IUser): Promise<any>{
+  public checkUser(body: IUser): Observable<IUser>{
     const url = 'http://localhost:3000/login/users';
-    let result: any;
-
-    const users$ = this.http.post(url, body);
-    await lastValueFrom(users$.pipe(
-      tap(res => result = res)
-    ));
-    return result;
+    return this.http.post<IUser>(url, body);
   }
 }

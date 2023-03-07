@@ -19,7 +19,7 @@ export function loginRouter() {
     const loginService = new LoginService(); 
     const result = loginService.findUser(body);
     console.log('server-result ', result)
-    res.send(result);
+    result ? res.send(result) : res.status(500).send('Incorrect username or password');
   })
 
 

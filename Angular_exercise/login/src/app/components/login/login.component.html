@@ -1,26 +1,22 @@
 <div class="container mt-5 rounded">
     <form [formGroup]="reactiveForm" (ngSubmit)="login()" class="form-group p-3">
       <div class="col mt-2">
-        <input type="text" name="name" id="name" 
+        <input type="text" name="name" id="name"
           class="form-control" placeholder="Username"
           formControlName = "name">
       </div>
-      
+
       <div class="col mt-2">
-        <input type="password" name="password" id="password" 
+        <input type="password" name="password" id="password"
           class="form-control" placeholder="Password"
           formControlName = "password">
       </div>
-  
+
       <div class="col mt-2 text-center" >
           <button class="btn btn-primary" type="submit"
           [disabled]="reactiveForm.invalid">
           Login</button>
       </div>
     </form>
-    <p>{{result.resultMessage}}</p>
-    <p>{{result.success}}</p>
-    <div class="alert" *ngIf="result?.resultMessage"
-    [ngClass]="!result.success? 'alert-danger' : 'alert-success'">
-    {{result.resultMessage}}</div>
   </div>
+  <app-message [result]="result" [user]="user"></app-message>
