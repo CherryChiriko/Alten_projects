@@ -14,7 +14,7 @@ export class MessageComponent implements OnInit{
   ngOnInit(): void {}
   constructor(){}
 
-  ngOnChanges(){    this.display()  }
+  ngOnChanges(): void {    this.display()  }
 
   private stringToDate(dateString: string): Date{
     return new Date(Date.parse(dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1')));
@@ -34,7 +34,7 @@ export class MessageComponent implements OnInit{
     return Math.ceil((birthdayThisYear - nextBirthday) / millisecondsPerDay);
   }
 
-  display(){
+  public display(): string{
     const birthday = this.user?.birthday? this.stringToDate(this.user.birthday) : new Date();
     console.log(this.user)
     const message = this.user?.userName? `Hello ${this.user?.userName}!\n

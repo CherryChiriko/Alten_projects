@@ -9,9 +9,17 @@ export function loginRouter() {
     const loginService = new LoginService(); 
   });
   
-  router.get('/users', (req, res) => {
-    const loginService = new LoginService(); 
-    res.json(loginService.getAll())
+  router.get('/users/:id', (req, res) => {
+    const loginService = new LoginService();
+    const { id } = req.params;
+    const user = loginService.getUser(id);
+
+    if (!user) {
+      res.status(404);
+      res.json({error: `Unable to find a todo with id: ${id}` })
+      return;
+    }
+    res.json(user)
   });
 
   router.post('/users', (req, res) => {    

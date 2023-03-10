@@ -10,8 +10,13 @@ export class FormService {
 
   constructor(private http: HttpClient) { }
 
+  url: string = 'http://localhost:3000/login/users';
+
   public checkUser(body: IUser): Observable<IUser>{
-    const url = 'http://localhost:3000/login/users';
-    return this.http.post<IUser>(url, body);
+    return this.http.post<IUser>(this.url, body);
+  }
+
+  public getUserInfo(id: number): Observable<IUser>{
+    return this.http.get<IUser>(`${this.url}/${id}`);
   }
 }

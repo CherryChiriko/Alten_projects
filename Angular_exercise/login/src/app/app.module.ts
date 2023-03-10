@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MessageComponent } from './components/message/message.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MessageComponent
+    MessageComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
