@@ -26,7 +26,6 @@ export class LoginService {
           name: `${names[Math.floor(Math.random() * 7)]}`,
           surname: `${surnames[Math.floor(Math.random() * 7)]}`,
           birthday: birthday,
-          // birthday: `${birth_day}/${birth_month}/${birth_year}`,
           address: `${countries[Math.floor(Math.random() * 5)]}, ${Math.floor(Math.random() * 50)+3}th Street, ${Math.floor(Math.random() * 100)+1}`
         }
       )
@@ -47,6 +46,5 @@ export class LoginService {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
-    // The maximum is exclusive and the minimum is inclusive
   }
 }
