@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit{
           this.result.status = 200
           this.result.message = "Login successful"
           this.user = res;
-          this.route.navigate(['/user/:res.userName'])
+          this.route.navigate(['/user/0'])
           this.snackBar.open(this.result.message, '', { duration: 2000 })
         },
         error: e => {
           this.result.status = e.status
           this.result.message = e.error
-          // this.snackBar.open(this.result.message, '', { duration: 2000 })
+          this.snackBar.open(this.result.message, '', { duration: 2000 })
         }}
     )
   }

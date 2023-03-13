@@ -35,10 +35,11 @@ export class MessageComponent implements OnInit{
   }
 
   public display(): string{
-    const birthday = this.user?.birthday? this.stringToDate(this.user.birthday) : new Date();
-    console.log(this.user)
-    const message = this.user?.userName? `Hello ${this.user?.userName}!\n
-    You will be ${this.calculateAge(birthday)} in ${this.daysForBirthday(birthday)} days!`: '';
-    return message;
+    // const birthday = this.user?.birthday? this.stringToDate(this.user.birthday) : new Date();
+    // console.log(this.user)
+    // const message = this.user?.userName? `Hello ${this.user?.userName}!\n
+    // You will be ${this.calculateAge(birthday)} in ${this.daysForBirthday(birthday)} days!`: '';
+    // return message;
+    return '';
   }
 }

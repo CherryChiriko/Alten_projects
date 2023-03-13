@@ -3,12 +3,12 @@ export class User {
     password: string;
     name?: string;
     surname?: string;
-    birthday?: string;
+    birthday?: Date;
     address?: string;
 
     constructor(
       userName: string, password: string,
-      birthday?: string, name?: string, surname?: string,
+      birthday?: Date, name?: string, surname?: string,
       address?: string) {
 
       this.userName = userName;
