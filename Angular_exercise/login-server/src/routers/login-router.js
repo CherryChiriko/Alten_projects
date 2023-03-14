@@ -11,8 +11,8 @@ export function loginRouter() {
   
   router.get('/users/:id', (req, res) => {
     const loginService = new LoginService();
-    const { id } = req.params;
-    const user = loginService.getUser(0);
+    const id = req.params.id;
+    const user = loginService.getUser(Number(id));
 
     if (!user) {
       res.status(404);

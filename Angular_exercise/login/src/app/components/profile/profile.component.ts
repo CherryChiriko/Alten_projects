@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
   }
   public displayAddress(): string{
     const address = this.addressConvert();
+    if (address.num === 0 ){return ''}
     let arr: string [] = [];
     Object.values(address).forEach((val: string | number) => arr.push(val.toString()));
     return arr.join(', ');
