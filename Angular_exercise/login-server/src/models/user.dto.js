@@ -1,15 +1,9 @@
-import { Address } from "./address.model";
-import { User } from "./user.model";
+import { Address } from "./address.model.js";
 
 export class UserDTO {
-  userName: string;
-  password: string;
-  name?: string;
-  surname?: string;
-  birthday?: Date;
-  address?: Address;
 
-  constructor(user: User) {
+  constructor(user) {
+    this.id = user.id;
     this.userName = user.userName;
     this.password = user.password;
     this.name = user.name;

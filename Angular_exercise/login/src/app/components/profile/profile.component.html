@@ -1,6 +1,6 @@
 <div class="container mt-5 p-4 rounded">
     <div class="col mt-2">
-      <h3>{{profile?.name !== 'Fiona'? 'Mr.' : 'Ms.'}} {{profile?.name}} {{profile?.surname}}</h3>
+      <h3>{{['Mary', 'Samantha', 'Olivia', undefined].includes(profile?.name)? 'Ms.' : 'Mr.'}} {{profile?.name}} {{profile?.surname}}</h3>
     </div>
 
     <div class="col mt-2">
@@ -8,6 +8,6 @@
     </div>
     <hr>
     <div class="col mt-2 text-center" >
-      <p>{{profile?.address}}</p>
+      <p>{{displayAddress()}}</p>
     </div>
 </div>

@@ -12,11 +12,11 @@ export function loginRouter() {
   router.get('/users/:id', (req, res) => {
     const loginService = new LoginService();
     const { id } = req.params;
-    const user = loginService.getUser(id);
+    const user = loginService.getUser(0);
 
     if (!user) {
       res.status(404);
-      res.json({error: `Unable to find a todo with id: ${id}` })
+      res.json({error: `Unable to find a user with id: ${id}` })
       return;
     }
     res.json(user)

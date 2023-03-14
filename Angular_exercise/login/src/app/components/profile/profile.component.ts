@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/interfaces/interfaces';
+import { Address } from 'src/app/models/address.model';
 
 @Component({
   selector: 'app-profile',
@@ -16,16 +17,27 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private form: FormService){}
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      const id = params['id'];
+      const id = Number(params['id']);
       this.form.getUserInfo(id).subscribe(user =>
         this.profile = user);
     });
   }
 
-  ngOnDestroy(){
+  private addressConvert(): Address{
+    return this.profile?.address?
+    { state: this.profile?.address?.state,
+      city: this.profile?.address?.city,
+      street: this.profile?.address?.street,
+      num: this.profile?.address?.num}
+    : {state:'', city: '', street: '', num: 0}
+  }
+  public displayAddress(): string{
+    const address = this.addressConvert();
+    let arr: string [] = [];
+    Object.values(address).forEach((val: string | number) => arr.push(val.toString()));
+    return arr.join(', ');
+  }
+  ngOnDestroy(): void{
     this.routeSub.unsubscribe();
   }
-  // id = this.route.snapshot.params['id'];
-  // this.form.getUserInfo(id).subscribe(
-  //   val => this.profile = (val));
 }
