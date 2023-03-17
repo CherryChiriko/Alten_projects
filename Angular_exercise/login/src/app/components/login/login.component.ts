@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
           this.result.status = 200
           this.result.message = "Login successful"
           this.user = res;
-          this.route.navigate(['/user/0'])   // Here it shouldn't be hardcoded
+          this.route.navigate(['/user', res.id])
           this.snackBar.open(this.result.message, '', { duration: 2000 })
         },
         error: e => {

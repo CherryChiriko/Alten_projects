@@ -1,6 +1,7 @@
 import { Address } from "../models/address.model";
 
 export interface IUser{
+  id: number;
   userName: string;
   password: string;
   name : string;
