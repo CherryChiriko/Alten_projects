@@ -1,13 +1,26 @@
-export class Address {
-  state: string;
-  city: string;
-  street: string;
-  num ?: number;
+import { IAddress } from "../interfaces/interfaces";
 
-  constructor(state: string, city: string, street: string, num ?: number) {
-    this.state = state;
-    this.city = city;
-    this.street = street;
-    this.num = num
-  }
+export class Address {
+  public state: string = '';
+  public city: string = '';
+  public street: string = '';
+  public num ?: number;
+
+  constructor() { }
+
+  // public mapFromDTO(dto: IAddress): void {
+  //   this.state = dto.state;
+  //   this.city = dto.city;
+  //   this.street = dto.street;
+  //   this.num = dto.num;
+  // }
+
+  // public mapToDTO(): IAddress {
+  //   return {
+  //     state: this.state,
+  //     city : this.city,
+  //     street : this.street,
+  //     num : this.num,
+  //   }
+  // }
 }

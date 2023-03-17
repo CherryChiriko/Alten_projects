@@ -16,8 +16,8 @@ export class LoginService {
   public checkUser(userName: string, password: string): Observable<User>{
     const body = {userName: userName, password: password}
     return this.http.post<IUser>(this.url, body).pipe(map(userDTO => {
-      const user = new User(userDTO.userName, userDTO.password);   //aggiungere altre proprietà
-      // user.mapFromDTO(userDTO);
+      const user = new User();
+      user.mapFromDTO(userDTO);
       return user;
     }));
   }

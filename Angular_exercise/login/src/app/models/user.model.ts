@@ -1,24 +1,21 @@
-import { Address } from "./address.model";
+import { IUser } from 'src/app/interfaces/interfaces';
+// import { Address } from "./address.model";
 
 export class User {
-    userName: string;
-    password: string;
-    name?: string;
-    surname?: string;
-    birthday?: Date;
-    address?: Address;
+    public userName: string = '';
+    public password: string = '';
+    public name: string = '';
+    public surname?: string;
+    public birthday?: Date;
+    // public address?: Address;
 
-    constructor(
-      userName: string, password: string,
-      birthday?: Date, name?: string, surname?: string,
-      address?: Address) {
+    constructor() {}
 
-      this.userName = userName;
-      this.password = password;
-
-      this.name = name;
-      this.surname = surname;
-      this.birthday = birthday;
-      this.address = address;
+    public mapFromDTO(userDTO: IUser): void {
+      this.userName = userDTO.userName;
+      this.password = userDTO.password;
+      this.name = userDTO.name;
+      this.surname = userDTO.surname;
+      this.birthday = userDTO.birthday;
     }
   }

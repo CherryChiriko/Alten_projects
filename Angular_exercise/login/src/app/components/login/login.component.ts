@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit{
 
   public result = new Result( '', 500);
   public reactiveForm !: FormGroup;
-  public user = new User('', '');
+  public user = new User();
 
   constructor(
     private loginService: LoginService, private snackBar: MatSnackBar,
@@ -30,13 +30,12 @@ export class LoginComponent implements OnInit{
 
   public login() : void {
     const val = this.reactiveForm.value;
-    // const body = new User( val.name, val.password );
-    this.loginService.checkUser(val.userName, val.password).subscribe(   // checkUser(name, passoword ) e si chiama login() non prende un user; form service si chiama authservice
+    this.loginService.checkUser(val.userName, val.password).subscribe(
       { next: (res)=> {
           this.result.status = 200
           this.result.message = "Login successful"
           this.user = res;
-          this.route.navigate(['/user/0'])
+          this.route.navigate(['/user/0'])   // Here it shouldn't be hardcoded
           this.snackBar.open(this.result.message, '', { duration: 2000 })
         },
         error: e => {

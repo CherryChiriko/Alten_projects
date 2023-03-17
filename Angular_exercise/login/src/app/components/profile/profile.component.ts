@@ -2,7 +2,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { IUser } from 'src/app/interfaces/interfaces';
+import { IAddress, IUser } from 'src/app/interfaces/interfaces';
 import { Address } from 'src/app/models/address.model';
 
 @Component({
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  private addressConvert(): Address{
+  private addressConvert(): IAddress{
     return this.profile?.address?
     { state: this.profile?.address?.state,
       city: this.profile?.address?.city,
@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   }
   public displayAddress(): string{
     const address = this.addressConvert();
-    if (address.num === 0 ){return ''}
+    if (!address.num){return ''}
     let arr: string [] = [];
     Object.values(address).forEach((val: string | number) => arr.push(val.toString()));
     return arr.join(', ');
