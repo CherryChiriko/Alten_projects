@@ -1,6 +1,6 @@
-import { UserService } from "./user.service.js";
 import { Address } from "../models/address.model.js";
-import { UserDTO } from "../models/user.dto.js";
+import { User } from "../models/user.js";
+
 
 export class LoginService {
 
@@ -12,7 +12,6 @@ export class LoginService {
     return Math.floor(Math.random() * number_of_elements) + min
   }
   generateRandomUsers() {
-    const userService = UserService.getInstance(); 
     const names = ['John', 'Mary', 'Tom', 'Samantha', 'Robert', 'Olivia', 'David', 'Marc'];
     const surnames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Garcia', 'Miller', 'Wu'];
     const countries = [
@@ -32,7 +31,7 @@ export class LoginService {
         `${this.generateRandomNumber(4,50)}th Street`,
         this.generateRandomNumber(1,100)
       )
-      const userDto = new UserDTO({
+      const newUser = new User({
         id: i,
         userName: `user${i}`,
         password: '123',
@@ -42,15 +41,15 @@ export class LoginService {
         address: address
       });
 
-      this.users.push( userService.createUser(userDto));
+      this.users.push( newUser);
     }
   }
 
   getAll(){    return this.users;  }
 
-  findUser(body) {
+  findUser(userName, password) {
     const user = this.users.find(u => 
-      u.userName === body.userName && u.password === body.password);
+      u.userName === userName && u.password === password);
     return user;
   }
 

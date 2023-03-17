@@ -1,5 +1,5 @@
-import { FormService } from 'src/app/services/form.service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/interfaces/interfaces';
@@ -14,11 +14,11 @@ export class ProfileComponent implements OnInit {
   private routeSub !: Subscription;
   public profile ?: IUser;
 
-  constructor(private route: ActivatedRoute, private form: FormService){}
+  constructor(private route: ActivatedRoute, private loginService: LoginService){}
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       const id = Number(params['id']);
-      this.form.getUserInfo(id).subscribe(user =>
+      this.loginService.getUserInfo(id).subscribe(user =>
         this.profile = user);
     });
   }

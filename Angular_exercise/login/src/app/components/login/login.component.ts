@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Result } from 'src/app/models/result.model';
 import { User } from 'src/app/models/user.model';
-import { FormService } from 'src/app/services/form.service';
+import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,20 +18,20 @@ export class LoginComponent implements OnInit{
   public user = new User('', '');
 
   constructor(
-    private form: FormService, private snackBar: MatSnackBar,
+    private loginService: LoginService, private snackBar: MatSnackBar,
     private route: Router){}
 
   ngOnInit() : void {
     this.reactiveForm = new FormGroup({
-      name: new FormControl(null),
+      userName: new FormControl(null),
       password: new FormControl(null)
     })
   }
 
   public login() : void {
     const val = this.reactiveForm.value;
-    const body = new User( val.name, val.password );
-    this.form.checkUser(body).subscribe(
+    // const body = new User( val.name, val.password );
+    this.loginService.checkUser(val.userName, val.password).subscribe(   // checkUser(name, passoword ) e si chiama login() non prende un user; form service si chiama authservice
       { next: (res)=> {
           this.result.status = 200
           this.result.message = "Login successful"

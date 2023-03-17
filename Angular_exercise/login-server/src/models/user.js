@@ -1,6 +1,6 @@
 import { Address } from "./address.model.js";
 
-export class UserDTO {
+export class User {
 
   constructor(user) {
     this.id = user.id;
