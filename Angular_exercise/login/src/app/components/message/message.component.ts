@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { IUser } from 'src/app/interfaces/interfaces';
 import { Result } from 'src/app/models/result.model';
-import { User } from 'src/app/models/user.model';
+// import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-message',
@@ -9,7 +10,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class MessageComponent implements OnInit{
   @Input() result = new Result("", 500);
-  @Input() user?: User;
+  @Input() user?: IUser;
 
   ngOnInit(): void {}
   constructor(){}

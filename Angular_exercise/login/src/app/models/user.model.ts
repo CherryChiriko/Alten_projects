@@ -1,5 +1,5 @@
 import { IUser } from 'src/app/interfaces/interfaces';
-// import { Address } from "./address.model";
+import { Address } from "./address.model";
 
 export class User {
     public id: number = 0;
@@ -8,7 +8,7 @@ export class User {
     public name: string = '';
     public surname?: string;
     public birthday?: Date;
-    // public address?: Address;
+    public address?: Address;
 
     constructor() {}
 
@@ -19,5 +19,6 @@ export class User {
       this.name = userDTO.name;
       this.surname = userDTO.surname;
       this.birthday = userDTO.birthday;
+      this.address = userDTO.address;
     }
   }

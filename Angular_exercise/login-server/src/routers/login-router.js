@@ -4,10 +4,6 @@ import { LoginService } from '../services/login.service.js';
 export function loginRouter() {
   const router = express.Router();
   const loginService = new LoginService(); 
-
-  // router.get('/', (req, res) => {
-  //   const { userName, password } = req.query;
-  // });
   
   router.get('/users/:id', (req, res) => {
     const id = req.params.id;
