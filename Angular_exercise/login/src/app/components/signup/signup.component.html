@@ -1,0 +1,21 @@
+<div class="container mt-5 rounded">
+  <form [formGroup]="reactiveForm" (ngSubmit)="login()" class="form-group p-3">
+    <div class="col mt-2">
+      <input type="text" name="userName" id="userName"
+        class="form-control" placeholder="Username"
+        formControlName = "userName">
+    </div>
+
+    <div class="col mt-2">
+      <input type="password" name="password" id="password"
+        class="form-control" placeholder="Password"
+        formControlName = "password">
+    </div>
+
+    <div class="col mt-2 text-center" >
+        <button class="btn btn-primary" type="submit"
+        [disabled]="reactiveForm.invalid">
+        Login</button>
+    </div>
+  </form>
+</div>

@@ -11,13 +11,15 @@ import { MessageComponent } from './components/message/message.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MessageComponent,
-    ProfileComponent
+    ProfileComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

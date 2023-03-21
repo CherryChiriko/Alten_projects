@@ -2,7 +2,6 @@ import { LoginService } from 'src/app/services/login.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { IAddress, IUser } from 'src/app/interfaces/interfaces';
 import { Address } from 'src/app/models/address.model';
 import { User } from 'src/app/models/user.model';
 

@@ -1,4 +1,4 @@
-import { IUser } from 'src/app/interfaces/interfaces';
+import { IUser } from 'src/app/interfaces/user.interface';
 import { Address } from "./address.model";
 
 export class User {

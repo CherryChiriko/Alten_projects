@@ -1,4 +1,4 @@
-import { IAddress } from "../interfaces/interfaces";
+import { IAddress } from "../interfaces/address.interface";
 
 export class Address {
   public state: string = '';

@@ -2,7 +2,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Result } from 'src/app/models/result.model';
-// import {  } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit{
 
   public result = new Result( '', 500);
   public reactiveForm !: FormGroup;
-  // public user = new User();
 
   constructor(
     private loginService: LoginService, private snackBar: MatSnackBar,
@@ -34,7 +32,6 @@ export class LoginComponent implements OnInit{
       { next: (res)=> {
           this.result.status = 200
           this.result.message = "Login successful"
-          // this.user = res;
           this.route.navigate(['/user', res.id])
           this.snackBar.open(this.result.message, '', { duration: 2000 })
         },
