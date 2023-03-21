@@ -1,5 +1,5 @@
 <div class="container mt-5 rounded">
-  <form [formGroup]="reactiveForm" (ngSubmit)="login()" class="form-group p-3">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-group p-3">
     <div class="col mt-2">
       <input type="text" name="userName" id="userName"
         class="form-control" placeholder="Username"
@@ -11,11 +11,64 @@
         class="form-control" placeholder="Password"
         formControlName = "password">
     </div>
+    <hr>
+    <div class="col mt-2">
+      <input type="text" name="name" id="name"
+        class="form-control" placeholder="Name"
+        formControlName = "name">
+    </div>
+    <div class="col mt-2">
+      <input type="text" name="surname" id="surname"
+        class="form-control" placeholder="Surname"
+        formControlName = "surname">
+    </div>
+
+
+      <div class="col my-3 d-flex">
+        <div class="form-text text-1 mx-2 gender-icon">
+          <i class="material-symbols-outlined">male</i>
+        </div>
+        <div class="form-check form-switch form-check-inline">
+          <input class="form-check-input form-check-inline" type="checkbox"
+          (click)="toggleGender()" checked role="switch">
+        </div>
+        <div class="form-text text-2 ms-2 gender-icon">
+          <i class="material-symbols-outlined">female</i>
+        </div>
+      </div>
+
+      <div class="input-group my-3">
+          <mat-form-field>
+              <mat-label>Birthday</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName = "birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+
+    <div formArrayName="address">
+      <div class="input-group mt-3">
+        <input type="text" name="state" id="state"
+        class="form-control" placeholder="State"
+        formControlName = "state">
+        <input type="text" name="city" id="city"
+        class="form-control" placeholder="City"
+        formControlName = "city">
+      </div>
+      <div class="input-group mb-3 mt-2" >
+        <input type="text" name="street" id="street"
+        class="form-control" placeholder="Street"
+        formControlName = "street">
+        <input type="number" name="number" id="number"
+        class="form-control" placeholder="N."
+        formControlName = "number">
+      </div>
+    </div>
 
     <div class="col mt-2 text-center" >
         <button class="btn btn-primary" type="submit"
-        [disabled]="reactiveForm.invalid">
-        Login</button>
+        [disabled]="registerForm.invalid">
+        Sign up</button>
     </div>
   </form>
 </div>

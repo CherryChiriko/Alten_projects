@@ -1,9 +1,12 @@
+import { Address } from 'src/app/models/address.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Result } from 'src/app/models/result.model';
+import { User } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/login.service';
+import { SignupService } from 'src/app/services/signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,31 +15,53 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class SignupComponent implements OnInit{
   public result = new Result( '', 500);
-  public reactiveForm !: FormGroup;
+  public registerForm !: FormGroup;
 
   constructor(
-    private loginService: LoginService, private snackBar: MatSnackBar,
-    private route: Router){}
+    private loginService: LoginService, private signupService: SignupService,
+    private snackBar: MatSnackBar, private route: Router ){}
 
     ngOnInit() : void {
-      this.reactiveForm = new FormGroup({
+      this.registerForm = new FormGroup({
         userName: new FormControl(null),
-        password: new FormControl(null)
+        password: new FormControl(null),
+        name: new FormControl(null),
+        surname: new FormControl(null),
+        birthday: new FormControl(new Date()),
+        address: new FormGroup({})
       })
+
+      let addressKeys : string[] = Object.keys(new Address())
+      addressKeys.push('number')
+      this.signupService.addElementToFormGroup(this.registerForm, 'address', addressKeys)
     }
 
-    public login() : void {
-      const val = this.reactiveForm.value;
+    public toggleGender(){}
+    public register() : void {
+      const val = this.registerForm.value;
+      console.log(val)
+
+      const user = new User();
+      let newGuy = {
+        name: val.name,
+        surname: val.surname,
+        userName: val.userName,
+        password: val.password,
+        birthday: val.birthday,
+        address: val.address
+      }
+      console.log(newGuy)
+      this.registerForm.reset();
       this.loginService.checkUser(val.userName, val.password).subscribe(
-        { next: (res)=> {
-            this.result.status = 200
-            this.result.message = "Login successful"
-            this.route.navigate(['/user', res.id])
+        { next: ()=> {
+            this.result.status = 505
+            this.result.message = "User already registered"
             this.snackBar.open(this.result.message, '', { duration: 2000 })
           },
-          error: e => {
-            this.result.status = e.status
-            this.result.message = e.error
+          error: ()=> {
+            this.result.status = 200
+            this.result.message = "User successfully registered"
+            this.route.navigate(['/login'])
             this.snackBar.open(this.result.message, '', { duration: 2000 })
           }}
       )
