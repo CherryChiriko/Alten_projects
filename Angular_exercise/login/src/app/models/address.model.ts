@@ -8,19 +8,10 @@ export class Address {
 
   constructor() { }
 
-  // public mapFromDTO(dto: IAddress): void {
-  //   this.state = dto.state;
-  //   this.city = dto.city;
-  //   this.street = dto.street;
-  //   this.num = dto.num;
-  // }
-
-  // public mapToDTO(): IAddress {
-  //   return {
-  //     state: this.state,
-  //     city : this.city,
-  //     street : this.street,
-  //     num : this.num,
-  //   }
-  // }
+  public mapFromDTO(addressDTO: IAddress): void {
+    this.state = addressDTO.state;
+    this.city = addressDTO.city;
+    this.street = addressDTO.street;
+    this.num = addressDTO.num;
+  }
 }

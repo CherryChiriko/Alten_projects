@@ -7,7 +7,7 @@ export interface IUser{
   name : string;
   surname ?: string;
   birthday ?: Date;
-  address ?: Address;
+  address ?: IAddress;
 }
 
 export interface IResult{

@@ -19,6 +19,9 @@ export class User {
       this.name = userDTO.name;
       this.surname = userDTO.surname;
       this.birthday = userDTO.birthday;
-      this.address = userDTO.address;
+
+      const address = new Address();
+      if (userDTO.address) {address.mapFromDTO(userDTO.address)}
+      this.address = address;
     }
   }

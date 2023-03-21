@@ -25,14 +25,14 @@ export class ProfileComponent implements OnInit {
   }
 
   public displayAddress(): string{
-    const address = this.profile.address ?
-    this.profile.address :
-    {state:'', city: '', street: '', num: 0};
-    if (!address.num){return ''}
+    const address : Address = this.profile.address ?
+    this.profile.address : new Address();
+    if (!address.city){return ''}
     let arr: string [] = [];
     Object.values(address).forEach((val: string | number) => arr.push(val.toString()));
     return arr.join(', ');
   }
+
   ngOnDestroy(): void{
     this.routeSub.unsubscribe();
   }
