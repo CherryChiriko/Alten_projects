@@ -24,6 +24,12 @@ export function loginRouter() {
     result ? res.send(result) : res.status(500).send('Incorrect username or password');
   })
 
+  router.post('/users/:id', (req, res) => {   
+    const newUser = req.body;
+    loginService.addUser(newUser);
+    console.log(loginService.getUser(newUser.id)) 
+    console.log('new-user ', newUser)
+  })
 
   return router;
 }

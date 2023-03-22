@@ -8,6 +8,7 @@ export class User {
     this.password = user.password;
     this.name = user.name;
     this.surname = user.surname;
+    this.gender = user.gender;
     this.birthday = user.birthday;
     this.address = user.address ? new Address(
       user.address.state,

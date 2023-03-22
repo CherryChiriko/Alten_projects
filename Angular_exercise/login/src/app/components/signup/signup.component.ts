@@ -27,7 +27,7 @@ export class SignupComponent implements OnInit{
         password: new FormControl(null),
         name: new FormControl(null),
         surname: new FormControl(null),
-        birthday: new FormControl(new Date()),
+        birthday: new FormControl(null),
         address: new FormGroup({})
       })
 
@@ -39,10 +39,7 @@ export class SignupComponent implements OnInit{
     public toggleGender(){}
     public register() : void {
       const val = this.registerForm.value;
-      console.log(val)
-
-      const user = new User();
-      let newGuy = {
+      let newUser  = {
         name: val.name,
         surname: val.surname,
         userName: val.userName,
@@ -50,21 +47,24 @@ export class SignupComponent implements OnInit{
         birthday: val.birthday,
         address: val.address
       }
-      console.log(newGuy)
+      console.log(newUser)
+      // this.loginService.checkUser(val.userName, val.password).subscribe(
+      //   { next: ()=> {
+      //       this.result.status = 505
+      //       this.result.message = "User already registered"
+      //       this.snackBar.open(this.result.message, '', { duration: 2000 })
+      //     },
+      //     error: ()=> {
+      //       this.result.status = 200
+      //       this.result.message = "User successfully registered"
+      //       this.route.navigate(['/login'])
+      //       this.snackBar.open(this.result.message, '', { duration: 2000 })
+      //     }}
+      // )
+      const user = new User();
+      user.mapFromDTO(newUser)
+      this.signupService.addUser(user);
       this.registerForm.reset();
-      this.loginService.checkUser(val.userName, val.password).subscribe(
-        { next: ()=> {
-            this.result.status = 505
-            this.result.message = "User already registered"
-            this.snackBar.open(this.result.message, '', { duration: 2000 })
-          },
-          error: ()=> {
-            this.result.status = 200
-            this.result.message = "User successfully registered"
-            this.route.navigate(['/login'])
-            this.snackBar.open(this.result.message, '', { duration: 2000 })
-          }}
-      )
     }
 }
 

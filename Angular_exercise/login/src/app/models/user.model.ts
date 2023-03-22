@@ -2,11 +2,12 @@ import { IUser } from 'src/app/interfaces/user.interface';
 import { Address } from "./address.model";
 
 export class User {
-    public id: number = 0;
+    public id?: number;
     public userName: string = '';
     public password: string = '';
     public name: string = '';
     public surname?: string;
+    public gender?: 'male' | 'female';
     public birthday?: Date;
     public address?: Address;
 
@@ -18,10 +19,15 @@ export class User {
       this.password = userDTO.password;
       this.name = userDTO.name;
       this.surname = userDTO.surname;
+      this.gender = userDTO.gender;
       this.birthday = userDTO.birthday;
 
       const address = new Address();
       if (userDTO.address) {address.mapFromDTO(userDTO.address)}
       this.address = address;
+    }
+
+    public mapToDTO(){
+
     }
   }

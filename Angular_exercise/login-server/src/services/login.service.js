@@ -20,6 +20,10 @@ export class LoginService {
 
     for (let i = 0; i < 41; i++) {
 
+      const name = names[this.generateRandomNumber(0,7)];
+      const gender = ['Mary', 'Samantha', 'Olivia'].includes(name)?
+                      'female' : 'male';
+      const surname = surnames[this.generateRandomNumber(0,7)];
       const birth_day = this.generateRandomNumber(1,28);
       const birth_month = this.generateRandomNumber(1,12);
       const birth_year = this.generateRandomNumber(1922,100);
@@ -31,17 +35,16 @@ export class LoginService {
         `${this.generateRandomNumber(4,50)}th Street`,
         this.generateRandomNumber(1,100)
       )
-      const newUser = new User({
+      this.addUser( {
         id: i,
         userName: `user${i}`,
         password: '123',
-        name: names[this.generateRandomNumber(0,7)],
-        surname: surnames[this.generateRandomNumber(0,7)],
+        name: name,
+        surname: surname,
+        gender: gender,
         birthday: birthday,
         address: address
       });
-
-      this.users.push( newUser);
     }
   }
 
@@ -53,6 +56,13 @@ export class LoginService {
     return user;
   }
 
+  addUser(newUser){ 
+    if (!newUser.id){ newUser.id = this.getLastId() + 1}
+    this.users.push(new User(newUser))
+  }
   getUser(id) {    return this.users.find(user => user.id === id);  }
-
+  getLastId() {
+    return this.users ? -1 : 
+           this.users[this.users.length].id
+  }
 }
