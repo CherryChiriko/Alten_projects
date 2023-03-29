@@ -25,6 +25,7 @@ export function loginRouter() {
   })
 
   router.post('/users/:id', (req, res) => {   
+    console.log(req)
     const newUser = req.body;
     loginService.addUser(newUser);
     console.log(loginService.getUser(newUser.id)) 

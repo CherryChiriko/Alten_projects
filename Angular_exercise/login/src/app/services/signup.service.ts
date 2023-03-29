@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { IUser } from '../interfaces/user.interface';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class SignupService {
     });
   }
   public addUser(user : User): void{
-    console.log("I arrived here")
-    this.http.post<User>(`${this.url}/${user.id}`, user);
+    const userDTO = user.mapToDTO();
+    this.http.post<IUser>(`${this.url}/${user.id}`, userDTO);
   }
 }

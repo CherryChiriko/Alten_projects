@@ -14,4 +14,13 @@ export class Address {
     this.street = addressDTO.street;
     this.num = addressDTO.num;
   }
+
+  public mapToDTO(): IAddress{
+    return {
+      state : this.state,
+      city : this.city,
+      street : this.street,
+      num : this.num
+    }
+  }
 }

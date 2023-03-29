@@ -7,7 +7,7 @@ export class User {
     public password: string = '';
     public name: string = '';
     public surname?: string;
-    public gender?: 'male' | 'female';
+    public gender: 'male' | 'female' = 'female';
     public birthday?: Date;
     public address?: Address;
 
@@ -27,7 +27,16 @@ export class User {
       this.address = address;
     }
 
-    public mapToDTO(){
-
+    public mapToDTO() :IUser{
+      return {
+        id: this.id,
+        userName : this.userName,
+        password: this.password,
+        name: this.name,
+        surname: this.surname,
+        gender: this.gender,
+        birthday: this.birthday,
+        address: this.address? this.address.mapToDTO() : this.address
+      }
     }
   }

@@ -7,6 +7,7 @@ import { Result } from 'src/app/models/result.model';
 import { User } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/login.service';
 import { SignupService } from 'src/app/services/signup.service';
+import { IUser } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +17,7 @@ import { SignupService } from 'src/app/services/signup.service';
 export class SignupComponent implements OnInit{
   public result = new Result( '', 500);
   public registerForm !: FormGroup;
+  private gender : boolean = true;
 
   constructor(
     private loginService: LoginService, private signupService: SignupService,
@@ -36,14 +38,15 @@ export class SignupComponent implements OnInit{
       this.signupService.addElementToFormGroup(this.registerForm, 'address', addressKeys)
     }
 
-    public toggleGender(){}
+    public toggleGender(){ this.gender = !this.gender}
     public register() : void {
       const val = this.registerForm.value;
-      let newUser  = {
+      let newUser : IUser = {
         name: val.name,
         surname: val.surname,
         userName: val.userName,
         password: val.password,
+        gender: this.gender? 'female' : 'male',
         birthday: val.birthday,
         address: val.address
       }

@@ -6,7 +6,7 @@ export interface IUser{
   password: string;
   name : string;
   surname ?: string;
-  gender?: 'male' | 'female'
+  gender: 'male' | 'female'
   birthday ?: Date;
   address ?: IAddress;
 }
